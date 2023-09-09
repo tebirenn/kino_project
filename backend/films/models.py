@@ -36,7 +36,6 @@ class Film(models.Model):
     poster = models.ImageField(blank=True, upload_to=uniq_name_upload)
     title_ru = models.CharField(max_length=255)
     title_orig = models.CharField(max_length=255)
-    rating = models.FloatField()
     prod_year = models.IntegerField()
     timing = models.IntegerField()
     premiere_date = models.DateField()
