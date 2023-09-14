@@ -16,4 +16,4 @@ class DirectorAdmin(admin.ModelAdmin):
 
 @admin.register(Film)
 class CountryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title_ru', 'title_orig', 'prod_year', 'timing', 'premiere_date', 'country_id', 'genre_id', 'director_id', 'poster')
+    list_display = ('id', 'title_ru', 'title_orig', 'prod_year', 'timing', 'premiere_date', 'country', 'genre', 'director', 'poster')

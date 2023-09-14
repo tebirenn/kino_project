@@ -1,11 +1,23 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.response import Response
 from .models import *
 from .serializers import *
 
 
 # Create your views here.
+class FilmListAPIView(ListCreateAPIView):
+    queryset = Film.objects.all()
+    serializer_class = FilmSerializer
+
+
+class FilmDetailAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Film.objects.all()
+    serializer_class = FilmSerializer
+
+
+
 class FilmAPIView(APIView):
     def get(self, request):
         films = Film.objects.all()
