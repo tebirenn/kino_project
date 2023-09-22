@@ -4,35 +4,47 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+
 from .models import *
 from .serializers import *
+from .permissions import *
 
 
 # Create your views here.
-
-
-
-class FilmViewSet(ModelViewSet):
+class FilmListAPIView(ListCreateAPIView):
     queryset = Film.objects.all()
     serializer_class = FilmSerializer
+    permission_classes = (IsAdminOrReadOnly, )
 
-    @action(methods=['get'], detail=False)
-    def genres(self, request):
-        genres = Genre.objects.all()
-        return Response([genre.name for genre in genres]) # list comprehension
 
-    @action(methods=['get'], detail=False)
-    def genre_filter(self, request):
-        films = Film.objects.filter(genre_id=self.request.query_params.get('genre_id'))
-        serializer = FilmSerializer(films, many=True)
-        return Response(serializer.data)
+class FilmDetailAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Film.objects.all()
+    serializer_class = FilmSerializer
+    permission_classes = (IsAdminOrReadOnly, )
+
+
+# class FilmViewSet(ModelViewSet):
+#     queryset = Film.objects.all()
+#     serializer_class = FilmSerializer
+
+#     @action(methods=['get'], detail=False)
+#     def genres(self, request):
+#         genres = Genre.objects.all()
+#         return Response([genre.name for genre in genres]) # list comprehension
+
+#     @action(methods=['get'], detail=False)
+#     def genre_filter(self, request):
+#         films = Film.objects.filter(genre_id=self.request.query_params.get('genre_id'))
+#         serializer = FilmSerializer(films, many=True)
+#         return Response(serializer.data)
 
 
 ## localhost:8000/api/films/genre_filter?genre_id=1
 
 
 
-
+## 
 
 
 
