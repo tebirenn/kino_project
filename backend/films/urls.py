@@ -5,6 +5,8 @@ from . import views
 # router = SimpleRouter()
 # router.register(r'', views.FilmViewSet)
 
+app_name = 'films'
+
 urlpatterns = [
     path('', views.FilmListAPIView.as_view()),
     path('<int:pk>/', views.FilmDetailAPIView.as_view()),

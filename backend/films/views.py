@@ -15,13 +15,13 @@ from .permissions import *
 class FilmListAPIView(ListCreateAPIView):
     queryset = Film.objects.all()
     serializer_class = FilmSerializer
-    permission_classes = (IsAdminOrReadOnly, )
+    # permission_classes = (IsAdminOrReadOnly, )
 
 
 class FilmDetailAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Film.objects.all()
     serializer_class = FilmSerializer
-    permission_classes = (IsAdminOrReadOnly, )
+    # permission_classes = (IsAdminOrReadOnly, )
 
 
 # class FilmViewSet(ModelViewSet):
